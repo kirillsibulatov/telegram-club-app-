@@ -46,6 +46,7 @@
       font-weight: bold;
       cursor: pointer;
       width: 100%;
+      margin-top: 0.5rem;
     }
     .error {
       color: red;
@@ -70,17 +71,42 @@
 
     function checkPassword() {
       const input = document.getElementById('password').value;
-        if (input === correctPassword) {
-            appDiv.innerHTML = `
-              <h1>Материалы клуба</h1>
-              <p>Выберите раздел:</p>
-              <button onclick="Telegram.WebApp.navigateTo('ideas.html')">💡 Идеи</button><br><br>
-              <button onclick="Telegram.WebApp.navigateTo('videos.html')">🎥 Видео</button><br><br>
-              <button onclick="Telegram.WebApp.navigateTo('lessons.html')">📘 Уроки</button>
-            `;
-          } else {
+      if (input === correctPassword) {
+        showMenu();
+      } else {
         error.textContent = 'Неверный пароль. Попробуй ещё раз.';
       }
+    }
+
+    function showMenu() {
+      appDiv.innerHTML = `
+        <h1>Материалы клуба</h1>
+        <p>Выберите раздел:</p>
+        <button onclick="showContent('ideas')">💡 Идеи</button>
+        <button onclick="showContent('videos')">🎥 Видео</button>
+        <button onclick="showContent('lessons')">📘 Уроки</button>
+      `;
+    }
+
+    function showContent(type) {
+      let title = '';
+      let content = '';
+      if (type === 'ideas') {
+        title = '💡 Идеи';
+        content = 'Тут будут идеи!';
+      } else if (type === 'videos') {
+        title = '🎥 Видео';
+        content = 'Тут будут видео!';
+      } else if (type === 'lessons') {
+        title = '📘 Уроки';
+        content = 'Тут будут уроки!';
+      }
+
+      appDiv.innerHTML = `
+        <h1>${title}</h1>
+        <p>${content}</p>
+        <button onclick="showMenu()">← Назад</button>
+      `;
     }
   </script>
 </body>
