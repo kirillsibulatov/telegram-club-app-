@@ -217,6 +217,7 @@
         <button onclick="showContent('videos')">🎥 Видео</button>
         <button onclick="showContent('lessons')">📘 Уроки</button>
       `;
+      carousel.style.display = 'block';
     }
 
     function showContent(type) {
@@ -243,6 +244,7 @@
         <p>${content}</p>
         <button onclick="showMenu()">← Назад</button>
       `;
+      carousel.style.display = 'none';
     }
 
     function toggleTheme(el) {
