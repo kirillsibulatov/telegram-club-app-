@@ -49,6 +49,7 @@
       box-shadow: 0 10px 25px rgba(0,0,0,0.1);
       position: relative;
       transition: all 0.3s ease;
+      margin-bottom: 2rem;
     }
     h1 {
       font-size: 1.6rem;
@@ -127,24 +128,35 @@
     input:checked + .slider:before {
       transform: translateX(26px);
     }
+    .carousel-wrapper {
+      max-width: 400px;
+      margin: auto;
+      background: var(--card-bg);
+      padding: 1rem;
+      border-radius: 1rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
     .carousel-container {
-      margin-top: 2rem;
       overflow-x: auto;
       white-space: nowrap;
       padding-bottom: 1rem;
     }
     .carousel-slide {
       display: inline-block;
-      width: 120px;
-      height: 120px;
-      background: var(--btn-bg);
-      color: var(--btn-text);
+      width: 180px;
+      height: 100px;
       margin: 0 10px;
-      border-radius: 2rem;
-      line-height: 120px;
-      font-size: 2rem;
+      border-radius: 1rem;
+      line-height: 100px;
+      font-size: 1.5rem;
       font-weight: bold;
+      color: white;
     }
+    .slide-1 { background-color: #2563eb; }
+    .slide-2 { background-color: #10b981; }
+    .slide-3 { background-color: #f59e0b; }
+    .slide-4 { background-color: #ef4444; }
+    .slide-5 { background-color: #8b5cf6; }
   </style>
 </head>
 <body>
@@ -156,16 +168,28 @@
     <button onclick="checkPassword()">Войти</button>
     <p class="error" id="error"></p>
   </div>
+  <div class="carousel-wrapper" id="carousel-block" style="display:none;">
+    <h2>Каруселька</h2>
+    <div class="carousel-container">
+      <div class="carousel-slide slide-1">1</div>
+      <div class="carousel-slide slide-2">2</div>
+      <div class="carousel-slide slide-3">3</div>
+      <div class="carousel-slide slide-4">4</div>
+      <div class="carousel-slide slide-5">5</div>
+    </div>
+  </div>
 
   <script>
     const correctPassword = '1234';
     const appDiv = document.getElementById('app');
     const error = document.getElementById('error');
+    const carousel = document.getElementById('carousel-block');
 
     function checkPassword() {
       const input = document.getElementById('password').value;
       if (input === correctPassword) {
         showMenu();
+        carousel.style.display = 'block';
       } else {
         error.textContent = 'Неверный пароль. Попробуй ещё раз.';
       }
@@ -184,13 +208,6 @@
         <button onclick="showContent('ideas')">💡 Идеи</button>
         <button onclick="showContent('videos')">🎥 Видео</button>
         <button onclick="showContent('lessons')">📘 Уроки</button>
-        <div class="carousel-container">
-          <div class="carousel-slide">1</div>
-          <div class="carousel-slide">2</div>
-          <div class="carousel-slide">3</div>
-          <div class="carousel-slide">4</div>
-          <div class="carousel-slide">5</div>
-        </div>
       `;
     }
 
