@@ -100,17 +100,22 @@
     }
     .carousel-slide {
       display: inline-block;
-      width: 140px;
-      height: 220px;
+      width: 200px;
+      height: 300px;
       margin: 0 10px;
       border-radius: 1rem;
       overflow: hidden;
+      cursor: pointer;
     }
     .carousel-slide img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
+      transition: transform 0.3s ease;
+    }
+    .carousel-slide img:hover {
+      transform: scale(1.05);
     }
     .theme-toggle {
       position: absolute;
@@ -153,39 +158,32 @@
     .theme-toggle input:checked + .slider:before {
       transform: translateX(26px);
     }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 100;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 1rem;
+      transition: transform 0.3s ease;
+    }
   </style>
 </head>
 <body>
-  <div class="club-title">ЗАКРЫТЫЙ КЛУБ</div>
-
-  <div class="container" id="app">
-    <h1>Вход в клуб</h1>
-    <p>Пожалуйста, введите пароль доступа:</p>
-    <input type="password" id="password" placeholder="Введите пароль">
-    <button onclick="checkPassword()">Войти</button>
-    <p class="error" id="error"></p>
+  <div class="modal" id="imageModal" onclick="this.style.display='none'">
+    <img id="modalImage" src="" alt="Zoomed image">
   </div>
 
-  <div class="carousel-wrapper" id="carousel-block" style="display:none;">
-    <h2>Каруселька</h2>
-    <div class="carousel-container">
-      <div class="carousel-slide">
-        <img src="https://images.unsplash.com/photo-1734792314947-883f84148b3a?q=80&w=4000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="AI 1">
-      </div>
-      <div class="carousel-slide">
-        <img src="https://images.unsplash.com/photo-1741800459649-1992621b796f?q=80&w=2268&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="AI 2">
-      </div>
-      <div class="carousel-slide">
-        <img src="https://images.unsplash.com/photo-1741017778557-31eaf775ce0a?q=80&w=4000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="AI 3">
-      </div>
-      <div class="carousel-slide">
-        <img src="https://images.unsplash.com/photo-1729420478052-0264c4a72b1b?q=80&w=5215&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="AI 4">
-      </div>
-      <div class="carousel-slide">
-        <img src="https://plus.unsplash.com/premium_photo-1667354097357-5c7f82cc2948?q=80&w=4948&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="AI 5">
-      </div>
-    </div>
-  </div>
+  <!-- остальная часть кода: заголовок, форма входа, карусель, скрипты и т.д. -->
 
   <script>
     const correctPassword = '1234';
@@ -254,6 +252,15 @@
         document.body.classList.remove('dark');
       }
     }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll('.carousel-slide img').forEach(img => {
+        img.addEventListener('click', () => {
+          document.getElementById('modalImage').src = img.src;
+          document.getElementById('imageModal').style.display = 'flex';
+        });
+      });
+    });
   </script>
 </body>
 </html>
