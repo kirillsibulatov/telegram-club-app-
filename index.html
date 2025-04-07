@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Закрытый клуб</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f1f5f9;
+      margin: 0;
+      padding: 2rem;
+      text-align: center;
+    }
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    p {
+      margin-bottom: 1.5rem;
+      color: #555;
+    }
+    a {
+      display: inline-block;
+      background-color: #0e8ed0;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .error {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="app">
+    <h1>Проверка доступа...</h1>
+  </div>
+
+  <script>
+    const allowedUsernames = ['sibulatovkirill'];
+    const tg = window.Telegram.WebApp;
+    const user = tg.initDataUnsafe.user;
+
+    const appDiv = document.getElementById('app');
+
+    if (user && allowedUsernames.includes(user.username)) {
+      appDiv.innerHTML = `
+        <h1>Материалы закрытого клуба</h1>
+        <p>Добро пожаловать, друг. Здесь то, что поможет тебе вырасти.</p>
+        <a href="https://investology.ru" target="_blank">Перейти к материалам</a>
+      `;
+    } else {
+      appDiv.innerHTML = `
+        <h1 class="error">Доступ запрещён</h1>
+        <p>Этот мини-апп доступен только для участников клуба.</p>
+      `;
+    }
+  </script>
+</body>
+</html>
