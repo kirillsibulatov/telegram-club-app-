@@ -41,6 +41,14 @@
       position: relative;
       transition: all 0.3s ease;
     }
+    .club-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #0e8ed0;
+      margin-bottom: 1rem;
+    }
     h1 {
       font-size: 1.6rem;
       margin-bottom: 1rem;
@@ -122,6 +130,7 @@
 </head>
 <body>
   <div class="container" id="app">
+    <div class="club-title">ЗАКРЫТЫЙ КЛУБ</div>
     <h1>Вход в клуб</h1>
     <p>Пожалуйста, введите пароль доступа:</p>
     <input type="password" id="password" placeholder="Введите пароль">
@@ -145,6 +154,7 @@
 
     function showMenu() {
       appDiv.innerHTML = `
+        <div class="club-title">ЗАКРЫТЫЙ КЛУБ</div>
         <div class="theme-toggle">
           <label class="switch">
             <input type="checkbox" onchange="toggleTheme(this)">
@@ -174,6 +184,7 @@
       }
 
       appDiv.innerHTML = `
+        <div class="club-title">ЗАКРЫТЫЙ КЛУБ</div>
         <div class="theme-toggle">
           <label class="switch">
             <input type="checkbox" onchange="toggleTheme(this)">
