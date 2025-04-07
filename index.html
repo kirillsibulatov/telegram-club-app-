@@ -183,7 +183,35 @@
     <img id="modalImage" src="" alt="Zoomed image">
   </div>
 
-  <!-- остальная часть кода: заголовок, форма входа, карусель, скрипты и т.д. -->
+  <div class="club-title">ЗАКРЫТЫЙ КЛУБ</div>
+  <div class="container" id="app">
+    <h1>Вход в клуб</h1>
+    <p>Пожалуйста, введите пароль доступа:</p>
+    <input type="password" id="password" placeholder="Введите пароль">
+    <button onclick="checkPassword()">Войти</button>
+    <p class="error" id="error"></p>
+  </div>
+
+  <div class="carousel-wrapper" id="carousel-block" style="display:none;">
+    <h2>Каруселька</h2>
+    <div class="carousel-container">
+      <div class="carousel-slide">
+        <img src="https://images.unsplash.com/photo-1734792314947-883f84148b3a?q=80&w=4000" alt="AI 1">
+      </div>
+      <div class="carousel-slide">
+        <img src="https://images.unsplash.com/photo-1741800459649-1992621b796f?q=80&w=2268" alt="AI 2">
+      </div>
+      <div class="carousel-slide">
+        <img src="https://images.unsplash.com/photo-1741017778557-31eaf775ce0a?q=80&w=4000" alt="AI 3">
+      </div>
+      <div class="carousel-slide">
+        <img src="https://images.unsplash.com/photo-1729420478052-0264c4a72b1b?q=80&w=5215" alt="AI 4">
+      </div>
+      <div class="carousel-slide">
+        <img src="https://plus.unsplash.com/premium_photo-1667354097357-5c7f82cc2948?q=80&w=4948" alt="AI 5">
+      </div>
+    </div>
+  </div>
 
   <script>
     const correctPassword = '1234';
@@ -196,6 +224,7 @@
       if (input === correctPassword) {
         showMenu();
         carousel.style.display = 'block';
+        bindModalHandlers();
       } else {
         error.textContent = 'Неверный пароль. Попробуй ещё раз.';
       }
@@ -216,6 +245,7 @@
         <button onclick="showContent('lessons')">📘 Уроки</button>
       `;
       carousel.style.display = 'block';
+      bindModalHandlers();
     }
 
     function showContent(type) {
@@ -246,21 +276,17 @@
     }
 
     function toggleTheme(el) {
-      if (el.checked) {
-        document.body.classList.add('dark');
-      } else {
-        document.body.classList.remove('dark');
-      }
+      document.body.classList.toggle('dark', el.checked);
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
+    function bindModalHandlers() {
       document.querySelectorAll('.carousel-slide img').forEach(img => {
         img.addEventListener('click', () => {
           document.getElementById('modalImage').src = img.src;
           document.getElementById('imageModal').style.display = 'flex';
         });
       });
-    });
+    }
   </script>
 </body>
 </html>
