@@ -70,15 +70,15 @@
 
     function checkPassword() {
       const input = document.getElementById('password').value;
-      if (input === correctPassword) {
-        appDiv.innerHTML = `
-          <h1>Материалы закрытого клуба</h1>
-          <p>Добро пожаловать! Вот ссылка:</p>
-          <button onclick="Telegram.WebApp.openLink('https://investology.ru')">
-            Перейти к материалам
-          </button>
-        `;
-      } else {
+        if (input === correctPassword) {
+          appDiv.innerHTML = `
+            <h1>Материалы закрытого клуба</h1>
+            <p>Добро пожаловать! Вот ссылка:</p>
+            <button onclick="Telegram.WebApp.openLink('https://investology.ru')">
+              Перейти к материалам
+            </button>
+          `;
+        } else {
         error.textContent = 'Неверный пароль. Попробуй ещё раз.';
       }
     }
