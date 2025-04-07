@@ -31,6 +31,15 @@
       color: var(--text-color);
       transition: all 0.3s ease;
     }
+    .club-title {
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #0e8ed0;
+      margin-bottom: 2rem;
+      text-shadow: 2px 2px 0 #ffffff, 4px 4px 10px rgba(0,0,0,0.2);
+    }
     .container {
       max-width: 400px;
       margin: auto;
@@ -40,14 +49,6 @@
       box-shadow: 0 10px 25px rgba(0,0,0,0.1);
       position: relative;
       transition: all 0.3s ease;
-    }
-    .club-title {
-      font-size: 1.2rem;
-      font-weight: bold;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #0e8ed0;
-      margin-bottom: 1rem;
     }
     h1 {
       font-size: 1.6rem;
@@ -129,8 +130,8 @@
   </style>
 </head>
 <body>
+  <div class="club-title">ЗАКРЫТЫЙ КЛУБ</div>
   <div class="container" id="app">
-    <div class="club-title">ЗАКРЫТЫЙ КЛУБ</div>
     <h1>Вход в клуб</h1>
     <p>Пожалуйста, введите пароль доступа:</p>
     <input type="password" id="password" placeholder="Введите пароль">
@@ -154,7 +155,6 @@
 
     function showMenu() {
       appDiv.innerHTML = `
-        <div class="club-title">ЗАКРЫТЫЙ КЛУБ</div>
         <div class="theme-toggle">
           <label class="switch">
             <input type="checkbox" onchange="toggleTheme(this)">
@@ -184,7 +184,6 @@
       }
 
       appDiv.innerHTML = `
-        <div class="club-title">ЗАКРЫТЫЙ КЛУБ</div>
         <div class="theme-toggle">
           <label class="switch">
             <input type="checkbox" onchange="toggleTheme(this)">
