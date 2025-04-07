@@ -71,14 +71,14 @@
     function checkPassword() {
       const input = document.getElementById('password').value;
         if (input === correctPassword) {
-          appDiv.innerHTML = `
-            <h1>Материалы закрытого клуба</h1>
-            <p>Добро пожаловать! Вот ссылка:</p>
-            <button onclick="Telegram.WebApp.openLink('https://investology.ru')">
-              Перейти к материалам
-            </button>
-          `;
-        } else {
+            appDiv.innerHTML = `
+              <h1>Материалы клуба</h1>
+              <p>Выберите раздел:</p>
+              <button onclick="Telegram.WebApp.navigateTo('ideas.html')">💡 Идеи</button><br><br>
+              <button onclick="Telegram.WebApp.navigateTo('videos.html')">🎥 Видео</button><br><br>
+              <button onclick="Telegram.WebApp.navigateTo('lessons.html')">📘 Уроки</button>
+            `;
+          } else {
         error.textContent = 'Неверный пароль. Попробуй ещё раз.';
       }
     }
