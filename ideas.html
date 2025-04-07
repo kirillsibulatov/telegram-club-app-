@@ -13,6 +13,7 @@
       --btn-text: #fff;
       --card-bg: #ffffff;
     }
+
     .dark {
       --bg-color: #1e1e1e;
       --text-color: #f1f1f1;
@@ -20,6 +21,7 @@
       --btn-text: #fff;
       --card-bg: #2b2b2b;
     }
+
     body {
       font-family: sans-serif;
       background-color: var(--bg-color);
@@ -85,6 +87,47 @@
       font-weight: bold;
       margin-top: 1rem;
     }
+    .theme-toggle {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+    label.switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 24px;
+    }
+    label.switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #ccc;
+      border-radius: 24px;
+      transition: 0.4s;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      border-radius: 50%;
+      transition: 0.4s;
+    }
+    input:checked + .slider {
+      background-color: #2196F3;
+    }
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
     .carousel-wrapper {
       max-width: 400px;
       margin: auto;
@@ -100,23 +143,24 @@
     }
     .carousel-slide {
       display: inline-block;
-      width: 140px;
-      height: 220px;
+      width: 180px;
+      height: 100px;
       margin: 0 10px;
       border-radius: 1rem;
-      overflow: hidden;
+      line-height: 100px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: white;
     }
-    .carousel-slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+    .slide-1 { background-color: #2563eb; }
+    .slide-2 { background-color: #10b981; }
+    .slide-3 { background-color: #f59e0b; }
+    .slide-4 { background-color: #ef4444; }
+    .slide-5 { background-color: #8b5cf6; }
   </style>
 </head>
 <body>
   <div class="club-title">ЗАКРЫТЫЙ КЛУБ</div>
-
   <div class="container" id="app">
     <h1>Вход в клуб</h1>
     <p>Пожалуйста, введите пароль доступа:</p>
@@ -124,25 +168,14 @@
     <button onclick="checkPassword()">Войти</button>
     <p class="error" id="error"></p>
   </div>
-
   <div class="carousel-wrapper" id="carousel-block" style="display:none;">
     <h2>Каруселька</h2>
     <div class="carousel-container">
-      <div class="carousel-slide">
-        <img src="https://images.unsplash.com/photo-1734792314947-883f84148b3a?q=80&w=4000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="AI 1">
-      </div>
-      <div class="carousel-slide">
-        <img src="https://images.unsplash.com/photo-1741800459649-1992621b796f?q=80&w=2268&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="AI 2">
-      </div>
-      <div class="carousel-slide">
-        <img src="https://images.unsplash.com/photo-1741017778557-31eaf775ce0a?q=80&w=4000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="AI 3">
-      </div>
-      <div class="carousel-slide">
-        <img src="https://images.unsplash.com/photo-1729420478052-0264c4a72b1b?q=80&w=5215&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="AI 4">
-      </div>
-      <div class="carousel-slide">
-        <img src="https://plus.unsplash.com/premium_photo-1667354097357-5c7f82cc2948?q=80&w=4948&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="AI 5">
-      </div>
+      <div class="carousel-slide slide-1">1</div>
+      <div class="carousel-slide slide-2">2</div>
+      <div class="carousel-slide slide-3">3</div>
+      <div class="carousel-slide slide-4">4</div>
+      <div class="carousel-slide slide-5">5</div>
     </div>
   </div>
 
@@ -164,6 +197,12 @@
 
     function showMenu() {
       appDiv.innerHTML = `
+        <div class="theme-toggle">
+          <label class="switch">
+            <input type="checkbox" onchange="toggleTheme(this)">
+            <span class="slider"></span>
+          </label>
+        </div>
         <h1>Материалы клуба</h1>
         <p>Выберите раздел:</p>
         <button onclick="showContent('ideas')">💡 Идеи</button>
@@ -185,11 +224,26 @@
         title = '📘 Уроки';
         content = 'Тут будут уроки!';
       }
+
       appDiv.innerHTML = `
+        <div class="theme-toggle">
+          <label class="switch">
+            <input type="checkbox" onchange="toggleTheme(this)">
+            <span class="slider"></span>
+          </label>
+        </div>
         <h1>${title}</h1>
         <p>${content}</p>
         <button onclick="showMenu()">← Назад</button>
       `;
+    }
+
+    function toggleTheme(el) {
+      if (el.checked) {
+        document.body.classList.add('dark');
+      } else {
+        document.body.classList.remove('dark');
+      }
     }
   </script>
 </body>
