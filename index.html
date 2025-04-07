@@ -86,7 +86,7 @@
       margin-top: 1rem;
     }
     .carousel-wrapper {
-      max-width: 400px;
+      max-width: 100%;
       margin: auto;
       background: var(--card-bg);
       padding: 1rem;
@@ -97,11 +97,13 @@
       overflow-x: auto;
       white-space: nowrap;
       padding-bottom: 1rem;
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
     }
     .carousel-slide {
       display: inline-block;
-      width: 200px;
-      height: 300px;
+      width: 260px;
+      height: 390px;
       margin: 0 10px;
       border-radius: 1rem;
       overflow: hidden;
