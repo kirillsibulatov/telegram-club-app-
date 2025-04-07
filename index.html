@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Закрытый клуб</title>
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
     body {
       font-family: sans-serif;
@@ -23,11 +22,29 @@
     }
     h1 {
       font-size: 1.5rem;
-      margin-bottom: 0.5rem;
+      margin-bottom: 1rem;
     }
     p {
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
       color: #555;
+    }
+    input {
+      padding: 0.5rem;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 0.5rem;
+      border: 1px solid #ccc;
+      width: 100%;
+    }
+    button {
+      background-color: #0e8ed0;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
     }
     a {
       display: inline-block;
@@ -41,32 +58,35 @@
     .error {
       color: red;
       font-weight: bold;
+      margin-top: 1rem;
     }
   </style>
 </head>
 <body>
   <div class="container" id="app">
-    <h1>Проверка доступа...</h1>
+    <h1>Вход в клуб</h1>
+    <p>Пожалуйста, введите пароль доступа:</p>
+    <input type="password" id="password" placeholder="Введите пароль">
+    <button onclick="checkPassword()">Войти</button>
+    <p class="error" id="error"></p>
   </div>
 
   <script>
-    const allowedUsernames = ['sibulatovkirill'];
-    const tg = window.Telegram.WebApp;
-    const user = tg.initDataUnsafe.user;
-
+    const correctPassword = '1234';
     const appDiv = document.getElementById('app');
+    const error = document.getElementById('error');
 
-    if (user && allowedUsernames.includes(user.username)) {
-      appDiv.innerHTML = `
-        <h1>Материалы закрытого клуба</h1>
-        <p>Добро пожаловать, друг. Здесь то, что поможет тебе вырасти.</p>
-        <a href="https://investology.ru" target="_blank">Перейти к материалам</a>
-      `;
-    } else {
-      appDiv.innerHTML = `
-        <h1 class="error">Доступ запрещён</h1>
-        <p>Этот мини-апп доступен только для участников клуба.</p>
-      `;
+    function checkPassword() {
+      const input = document.getElementById('password').value;
+      if (input === correctPassword) {
+        appDiv.innerHTML = `
+          <h1>Материалы закрытого клуба</h1>
+          <p>Добро пожаловать! Вот ссылка:</p>
+          <a href="https://investology.ru" target="_blank">Перейти к материалам</a>
+        `;
+      } else {
+        error.textContent = 'Неверный пароль. Попробуй ещё раз.';
+      }
     }
   </script>
 </body>
