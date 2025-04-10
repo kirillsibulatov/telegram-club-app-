@@ -98,6 +98,11 @@
       transition: all 0.3s ease;
       letter-spacing: 0.5px;
     }
+    button i {
+      margin-right: 0.5rem;
+      vertical-align: middle;
+    }
+
     
     button:hover {
       transform: translateY(-2px);
@@ -204,6 +209,7 @@
       transition: transform 0.3s ease;
     }
   </style>
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
   <div class="modal" id="imageModal" onclick="this.style.display='none'">
@@ -294,9 +300,16 @@
         </div>
         <h1>Материалы клуба</h1>
         <p>Выберите раздел:</p>
-        <button onclick="showContent('ideas')">💡 Идеи</button>
-        <button onclick="showContent('videos')">🎥 Видео</button>
-        <button onclick="showContent('lessons')">📘 Уроки</button>
+        <button onclick="showContent('ideas')">
+          <i data-lucide="lightbulb"></i> Идеи
+        </button>
+        <button onclick="showContent('videos')">
+          <i data-lucide="video"></i> Видео
+        </button>
+        <button onclick="showContent('lessons')">
+          <i data-lucide="book-open"></i> Уроки
+        </button>
+
       `;
       carousel.style.display = 'block';
       bindModalHandlers();
@@ -342,5 +355,9 @@
       });
     }
   </script>
+  <script>
+    lucide.createIcons();
+  </script>
+
 </body>
 </html>
