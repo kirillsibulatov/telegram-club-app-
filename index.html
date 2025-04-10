@@ -28,6 +28,9 @@
       text-align: center;
       color: var(--text-color);
       transition: all 0.3s ease;
+      background-color: #f1f5f9;
+      background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='%23cbd5e1'/%3E%3C/svg%3E");
+      background-size: 20px 20px;
     }
     .club-title {
       font-size: 2rem;
@@ -55,10 +58,6 @@
     #user-greeting {
       font-size: 1.1rem;
       font-weight: bold;
-      background: rgba(37, 99, 235, 0.08);
-      padding: 0.5rem 1rem;
-      border-radius: 1rem;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
     .container {
       max-width: 400px;
@@ -73,6 +72,7 @@
       margin-bottom: 2rem;
       border: 1px solid #e0e7ff;
     }
+
     h1 {
       font-size: 1.6rem;
       margin-bottom: 1rem;
@@ -94,11 +94,12 @@
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
+    
       background: linear-gradient(135deg, #2563eb, #1e40af);
       color: var(--btn-text);
       padding: 0.8rem 1.5rem;
       border-radius: 1rem;
-      border: none;
+      border: none
       font-weight: 600;
       font-size: 1rem;
       cursor: pointer;
@@ -108,15 +109,25 @@
       transition: all 0.3s ease;
       letter-spacing: 0.5px;
     }
+    
     button:hover {
       transform: translateY(-2px);
       box-shadow: 0 10px 20px rgba(37, 99, 235, 0.4);
       opacity: 0.95;
     }
+    
     button i {
       width: 20px;
       height: 20px;
     }
+
+    
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.4);
+      opacity: 0.95;
+    }
+
     .error {
       color: red;
       font-weight: bold;
@@ -138,6 +149,7 @@
       text-transform: uppercase;
       letter-spacing: 1px;
     }
+
     .carousel-container {
       overflow-x: auto;
       white-space: nowrap;
@@ -223,16 +235,30 @@
       border-radius: 1rem;
       transition: transform 0.3s ease;
     }
+
     h1, h2, .club-title {
       font-weight: 900;
     }
+
     p, button, input {
       font-weight: 500;
     }
+
+    #user-greeting {
+      font-size: 1.1rem;
+      font-weight: bold;
+      background: rgba(37, 99, 235, 0.08);
+      padding: 0.5rem 1rem;
+      border-radius: 1rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+
   </style>
   <script src="https://unpkg.com/lucide@latest"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
@@ -241,11 +267,14 @@
   <div class="modal" id="imageModal" onclick="this.style.display='none'">
     <img id="modalImage" src="" alt="Zoomed image">
   </div>
+
   <div id="user-info">
     <img id="user-photo" src="" alt="Аватар">
     <div id="user-greeting"></div>
   </div>
+
   <div class="club-title">ЗАКРЫТЫЙ КЛУБ</div>
+
   <div class="container" id="app">
     <h1>Вход в клуб</h1>
     <p>Пожалуйста, введите пароль доступа:</p>
@@ -253,6 +282,7 @@
     <button onclick="checkPassword()">Войти</button>
     <p class="error" id="error"></p>
   </div>
+
   <div class="carousel-wrapper" id="carousel-block" style="display:none;">
     <h2>Каруселька</h2>
     <div class="carousel-container">
@@ -273,8 +303,8 @@
       </div>
     </div>
   </div>
+
   <script>
-    let isDarkMode = false;
     const correctPassword = '1234';
     const appDiv = document.getElementById('app');
     const error = document.getElementById('error');
@@ -299,6 +329,7 @@
       const userPhoto = document.getElementById('user-photo');
       const userGreeting = document.getElementById('user-greeting');
       const userInfo = document.getElementById('user-info');
+
       const fullName = tgUser.first_name;
 
       if (tgUser.photo_url) {
@@ -331,12 +362,13 @@
         <button onclick="showContent('lessons')">
           <i data-lucide="book-open"></i> Уроки
         </button>
+
       `;
       carousel.style.display = 'block';
       bindModalHandlers();
       lucide.createIcons();
-      document.querySelector('.theme-toggle input').checked = isDarkMode;
     }
+    
 
     function showContent(type) {
       let title = '';
@@ -363,12 +395,10 @@
         <button onclick="showMenu()">← Назад</button>
       `;
       carousel.style.display = 'none';
-      document.querySelector('.theme-toggle input').checked = isDarkMode;
     }
 
     function toggleTheme(el) {
-      isDarkMode = el.checked;
-      document.body.classList.toggle('dark', isDarkMode);
+      document.body.classList.toggle('dark', el.checked);
     }
 
     function bindModalHandlers() {
@@ -383,5 +413,6 @@
   <script>
     lucide.createIcons();
   </script>
+
 </body>
 </html>
