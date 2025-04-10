@@ -242,7 +242,6 @@
       min-width: 100px;
       max-width: 130px;
       aspect-ratio: 1;
-      background: var(--card-bg);
       border-radius: 1rem;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       display: flex;
@@ -252,7 +251,37 @@
       gap: 0.5rem;
       cursor: pointer;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
+      padding: 1rem;
+      color: var(--text-color);
     }
+    
+    .menu-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    
+    .menu-card.ideas {
+      background: #fef3c7; /* светло-жёлтый */
+    }
+    
+    .menu-card.videos {
+      background: #ede9fe; /* светло-фиолетовый */
+    }
+    
+    .menu-card.lessons {
+      background: #dbeafe; /* светло-голубой */
+    }
+    
+    .menu-card i {
+      width: 32px;
+      height: 32px;
+    }
+    
+    .menu-card span {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
     
     .menu-card:hover {
       transform: translateY(-4px);
