@@ -238,6 +238,29 @@
       box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
 
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-10px); }
+      40%, 80% { transform: translateX(10px); }
+    }
+    
+    .error {
+      color: red;
+      font-weight: bold;
+      margin-top: 1rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .error.visible {
+      opacity: 1;
+    }
+    
+    .dark {
+      --bg-color: #121212;
+    }
+
+
   </style>
   <script src="https://unpkg.com/lucide@latest"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
@@ -257,7 +280,7 @@
   <div class="container" id="app">
     <h1>Вход в клуб</h1>
     <p>Пожалуйста, введите пароль доступа:</p>
-    <input type="password" id="password" placeholder="Введите пароль">
+    <input type="password" id="password" placeholder="🔒 Введите пароль">
     <button onclick="checkPassword()">Войти</button>
     <p class="error" id="error"></p>
   </div>
@@ -290,16 +313,26 @@
     const carousel = document.getElementById('carousel-block');
 
     function checkPassword() {
-      const input = document.getElementById('password').value;
-      if (input === correctPassword) {
+      const input = document.getElementById('password');
+      const error = document.getElementById('error');
+    
+      if (input.value === correctPassword) {
+        error.classList.remove('visible');
         showMenu();
         carousel.style.display = 'block';
         bindModalHandlers();
         showUserInfo();
       } else {
         error.textContent = 'Неверный пароль. Попробуй ещё раз.';
+        error.classList.add('visible');
+        input.style.animation = 'shake 0.4s ease';
+    
+        setTimeout(() => {
+          input.style.animation = '';
+        }, 400);
       }
     }
+
 
     function showUserInfo() {
       const tgUser = window.Telegram.WebApp.initDataUnsafe.user;
