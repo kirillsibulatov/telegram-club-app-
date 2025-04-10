@@ -102,7 +102,6 @@
       margin-right: 0.5rem;
       vertical-align: middle;
     }
-
     
     button:hover {
       transform: translateY(-2px);
@@ -216,11 +215,12 @@
     <img id="modalImage" src="" alt="Zoomed image">
   </div>
 
-  <div class="club-title">ЗАКРЫТЫЙ КЛУБ</div>
   <div id="user-info">
     <img id="user-photo" src="" alt="Аватар">
     <div id="user-greeting"></div>
   </div>
+
+  <div class="club-title">ЗАКРЫТЫЙ КЛУБ</div>
 
   <div class="container" id="app">
     <h1>Вход в клуб</h1>
@@ -277,7 +277,7 @@
       const userGreeting = document.getElementById('user-greeting');
       const userInfo = document.getElementById('user-info');
 
-      const fullName = tgUser.first_name + (tgUser.last_name ? ' ' + tgUser.last_name : '');
+      const fullName = tgUser.first_name;
 
       if (tgUser.photo_url) {
         userPhoto.src = tgUser.photo_url;
