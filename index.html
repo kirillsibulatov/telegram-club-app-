@@ -229,87 +229,6 @@
       font-weight: 500;
     }
 
-    .card-grid {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-top: 1rem;
-    }
-
-    .menu-card {
-      flex: 1 1 30%;
-      min-width: 100px;
-      max-width: 130px;
-      aspect-ratio: 1;
-      border-radius: 1rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      padding: 1rem;
-      color: var(--text-color);
-    }
-    
-    .menu-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    }
-    
-    .menu-card.ideas {
-      background: #fef3c7; /* светло-жёлтый */
-    }
-    
-    .menu-card.videos {
-      background: #ede9fe; /* светло-фиолетовый */
-    }
-    
-    .menu-card.lessons {
-      background: #dbeafe; /* светло-голубой */
-    }
-    
-    .menu-card i {
-      width: 32px;
-      height: 32px;
-    }
-    
-    .menu-card span {
-      font-weight: 600;
-      font-size: 1rem;
-    }
-
-    
-    .menu-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    }
-    
-    .menu-card i {
-      width: 32px;
-      height: 32px;
-      color: #2563eb;
-    }
-    
-    .menu-card span {
-      font-weight: 600;
-      font-size: 1rem;
-      color: var(--text-color);
-    }
-    
-    /* Бабл за приветствием */
-    #user-greeting {
-      font-size: 1.1rem;
-      font-weight: bold;
-      background: rgba(37, 99, 235, 0.08);
-      padding: 0.5rem 1rem;
-      border-radius: 1rem;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
-
   </style>
   <script src="https://unpkg.com/lucide@latest"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
@@ -403,25 +322,18 @@
           </label>
         </div>
         <h1>Материалы клуба</h1>
-        <div class="card-grid">
-          <div class="menu-card" onclick="showContent('ideas')">
-            <i data-lucide="lightbulb"></i>
-            <span>Идеи</span>
-          </div>
-          <div class="menu-card" onclick="showContent('videos')">
-            <i data-lucide="video"></i>
-            <span>Видео</span>
-          </div>
-          <div class="menu-card" onclick="showContent('lessons')">
-            <i data-lucide="book-open"></i>
-            <span>Уроки</span>
-          </div>
-        </div>
-      `;
-      carousel.style.display = 'block';
-      bindModalHandlers();
-      lucide.createIcons();
+        <p>Выберите раздел:</p>
+        <button onclick="showContent('ideas')">
+          <i data-lucide="lightbulb"></i> Идеи
+        </button>
+        <button onclick="showContent('videos')">
+          <i data-lucide="video"></i> Видео
+        </button>
+        <button onclick="showContent('lessons')">
+          <i data-lucide="book-open"></i> Уроки
+        </button>
 
+      `;
       carousel.style.display = 'block';
       bindModalHandlers();
       lucide.createIcons();
