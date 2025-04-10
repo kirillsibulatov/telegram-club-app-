@@ -40,16 +40,12 @@
     }
     #user-info {
       margin-bottom: 1.5rem;
+      display: none;
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
-      gap: 1rem;
-      padding-left: 1rem;
+      gap: 0.5rem;
     }
-
-    }
-
     #user-info img {
       width: 60px;
       height: 60px;
@@ -59,13 +55,7 @@
     #user-greeting {
       font-size: 1.1rem;
       font-weight: bold;
-      background: rgba(37, 99, 235, 0.08);
-      padding: 0.5rem 1rem;
-      border-radius: 1rem;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-      white-space: nowrap;
     }
-
     .container {
       max-width: 400px;
       margin: auto;
@@ -175,9 +165,6 @@
       position: absolute;
       top: 1rem;
       right: 1rem;
-    }
-
-    
     }
     .theme-toggle .switch {
       position: relative;
@@ -297,10 +284,6 @@
   </div>
 
   <script>
-    // Включаем тёмную тему по умолчанию
-    document.body.classList.add('dark');
-    let isDarkMode = true;
-
     const correctPassword = '1234';
     const appDiv = document.getElementById('app');
     const error = document.getElementById('error');
