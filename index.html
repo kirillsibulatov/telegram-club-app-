@@ -35,8 +35,26 @@
       letter-spacing: 2px;
       text-transform: uppercase;
       color: #0e8ed0;
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
       text-shadow: 2px 2px 0 #ffffff, 4px 4px 10px rgba(0,0,0,0.2);
+    }
+    #user-info {
+      margin-bottom: 1.5rem;
+      display: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    #user-info img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    #user-greeting {
+      font-size: 1.1rem;
+      font-weight: bold;
     }
     .container {
       max-width: 400px;
@@ -186,9 +204,9 @@
   </div>
 
   <div class="club-title">ЗАКРЫТЫЙ КЛУБ</div>
-  <div id="user-info" style="margin-bottom: 1.5rem; display: none;">
-    <img id="user-photo" src="" alt="Аватар" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; margin-bottom: 0.5rem;">
-    <div id="user-name" style="font-weight: bold;"></div>
+  <div id="user-info">
+    <img id="user-photo" src="" alt="Аватар">
+    <div id="user-greeting"></div>
   </div>
 
   <div class="container" id="app">
@@ -232,30 +250,32 @@
         showMenu();
         carousel.style.display = 'block';
         bindModalHandlers();
-        bindModalHandlers();
         showUserInfo();
       } else {
         error.textContent = 'Неверный пароль. Попробуй ещё раз.';
       }
     }
+
     function showUserInfo() {
-        const tgUser = window.Telegram.WebApp.initDataUnsafe.user;
-        if (!tgUser) return;
-      
-        const userPhoto = document.getElementById('user-photo');
-        const userName = document.getElementById('user-name');
-        const userInfo = document.getElementById('user-info');
-      
-        if (tgUser.photo_url) {
-          userPhoto.src = tgUser.photo_url;
-          userPhoto.style.display = 'block';
-        } else {
-          userPhoto.style.display = 'none';
-        }
-      
-        userName.textContent = tgUser.first_name + (tgUser.last_name ? ' ' + tgUser.last_name : '');
-        userInfo.style.display = 'block';
+      const tgUser = window.Telegram.WebApp.initDataUnsafe.user;
+      if (!tgUser) return;
+
+      const userPhoto = document.getElementById('user-photo');
+      const userGreeting = document.getElementById('user-greeting');
+      const userInfo = document.getElementById('user-info');
+
+      const fullName = tgUser.first_name + (tgUser.last_name ? ' ' + tgUser.last_name : '');
+
+      if (tgUser.photo_url) {
+        userPhoto.src = tgUser.photo_url;
+        userPhoto.style.display = 'block';
+      } else {
+        userPhoto.style.display = 'none';
       }
+
+      userGreeting.textContent = `Привет, ${fullName}!`;
+      userInfo.style.display = 'flex';
+    }
 
     function showMenu() {
       appDiv.innerHTML = `
