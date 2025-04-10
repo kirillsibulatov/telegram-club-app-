@@ -162,10 +162,12 @@
       transform: scale(1.05);
     }
     .theme-toggle {
-      position: absolute;
+      position: fixed;
       top: 1rem;
       right: 1rem;
+      z-index: 999; /* чтобы всегда поверх других элементов */
     }
+
     .theme-toggle .switch {
       position: relative;
       display: inline-block;
@@ -275,6 +277,13 @@
     <div id="user-greeting"></div>
   </div>
 
+  <div class="theme-toggle">
+     <label class="switch">
+        <input type="checkbox" onchange="toggleTheme(this)">
+        <span class="slider"></span>
+      </label>
+  </div>
+
   <div class="club-title">ЗАКРЫТЫЙ КЛУБ</div>
 
   <div class="container" id="app">
@@ -357,12 +366,7 @@
 
     function showMenu() {
       appDiv.innerHTML = `
-        <div class="theme-toggle">
-          <label class="switch">
-            <input type="checkbox" onchange="toggleTheme(this)">
-            <span class="slider"></span>
-          </label>
-        </div>
+        
         <h1>Материалы клуба</h1>
         <p>Выберите раздел:</p>
         <button onclick="showContent('ideas')">
