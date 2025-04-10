@@ -84,6 +84,11 @@
       width: 100%;
     }
     button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    
       background: linear-gradient(135deg, #2563eb, #1e40af);
       color: var(--btn-text);
       padding: 0.8rem 1.5rem;
@@ -98,10 +103,18 @@
       transition: all 0.3s ease;
       letter-spacing: 0.5px;
     }
-    button i {
-      margin-right: 0.5rem;
-      vertical-align: middle;
+    
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.4);
+      opacity: 0.95;
     }
+    
+    button i {
+      width: 20px;
+      height: 20px;
+    }
+
     
     button:hover {
       transform: translateY(-2px);
