@@ -415,12 +415,15 @@
       carousel.style.display = 'block';
       bindModalHandlers();
       lucide.createIcons();
+      document.getElementById('bottomNav').style.display = 'flex';
+
     }
     
 
     function showContent(type) {
       let title = '';
       let content = '';
+      document.getElementById('bottomNav').style.display = 'flex';
       if (type === 'ideas') {
         title = '💡 Идеи';
         content = 'Тут будут идеи!';
