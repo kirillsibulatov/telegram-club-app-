@@ -263,39 +263,55 @@
     .dark {
       --bg-color: #121212;
     }
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: var(--card-bg);
-      display: flex;
-      justify-content: space-around;
-      padding: 0.5rem 0;
-      border-top: 1px solid #ddd;
-      z-index: 1000;
-    }
-    
-    .bottom-nav button {
-      background: none;
-      border: none;
-      color: var(--text-color);
-      font-size: 0.75rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.2rem;
-      cursor: pointer;
-    }
-    
-    .bottom-nav button i {
-      width: 24px;
-      height: 24px;
-    }
 
 
-  </style>
+  
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--card-bg);
+  display: flex;
+  justify-content: space-around;
+  padding: 0.4rem 0.2rem;
+  border-top: 1px solid #e0e0e0;
+  z-index: 999;
+  box-shadow: 0 -3px 10px rgba(0,0,0,0.06);
+}
+
+.bottom-nav button {
+  background: #fff;
+  border: none;
+  color: #111;
+  font-size: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem 0.5rem;
+  border-radius: 1rem;
+  min-width: 30%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+}
+
+.dark .bottom-nav button {
+  background: #2b2b2b;
+  color: #f1f1f1;
+}
+
+.bottom-nav button i {
+  width: 22px;
+  height: 22px;
+}
+
+.bottom-nav button.active {
+  background: #2563eb;
+  color: white;
+}
+
+</style>
   <script src="https://unpkg.com/lucide@latest"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
 </head>
@@ -396,7 +412,29 @@
       userInfo.style.display = 'flex';
     }
 
-    function showMenu() {
+    
+function showMenu() {
+  appDiv.innerHTML = `
+    <h1>Материалы клуба</h1>
+    <p>Выберите раздел ниже:</p>
+  `;
+  carousel.style.display = 'block';
+  document.getElementById('bottomNav').style.display = 'flex';
+  bindModalHandlers();
+  lucide.createIcons();
+}
+
+
+
+function switchTab(el, type) {
+  document.querySelectorAll('.bottom-nav button').forEach(btn => btn.classList.remove('active'));
+  el.classList.add('active');
+  showContent(type);
+}
+
+
+// Старое:
+function showMenu() {
       appDiv.innerHTML = `
         
         <h1>Материалы клуба</h1>
@@ -415,15 +453,12 @@
       carousel.style.display = 'block';
       bindModalHandlers();
       lucide.createIcons();
-      document.getElementById('bottomNav').style.display = 'flex';
-
     }
     
 
     function showContent(type) {
       let title = '';
       let content = '';
-      document.getElementById('bottomNav').style.display = 'flex';
       if (type === 'ideas') {
         title = '💡 Идеи';
         content = 'Тут будут идеи!';
@@ -465,12 +500,12 @@
     lucide.createIcons();
   </script>
 
-  <div class="bottom-nav" id="bottomNav" style="display: none;">
-    <button onclick="showContent('ideas')"><i data-lucide='lightbulb'></i><span>Идеи</span></button>
-    <button onclick="showContent('videos')"><i data-lucide='video'></i><span>Видео</span></button>
-    <button onclick="showContent('lessons')"><i data-lucide='book-open'></i><span>Уроки</span></button>
-  </div>
 
+<div class="bottom-nav" id="bottomNav" style="display: none;">
+  <button onclick="switchTab(this, 'ideas')"><i data-lucide='lightbulb'></i><span>Идеи</span></button>
+  <button onclick="switchTab(this, 'videos')"><i data-lucide='video'></i><span>Видео</span></button>
+  <button onclick="switchTab(this, 'lessons')"><i data-lucide='book-open'></i><span>Уроки</span></button>
+</div>
 
 </body>
 </html>
